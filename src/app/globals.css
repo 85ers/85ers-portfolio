@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --background: #060606;
+  --foreground: #ffffff;
+  --accent: #008080;
+  --accent-light: #00b3b3;
+  --accent-dark: #005f5f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-accent-dark: var(--accent-dark);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #060606;
+}
+::-webkit-scrollbar-thumb {
+  background: #008080;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00b3b3;
+}
+
+/* Teal Glow Utility */
+.teal-glow {
+  text-shadow: 0 0 20px rgba(0, 128, 128, 0.5),
+               0 0 40px rgba(0, 128, 128, 0.3),
+               0 0 80px rgba(0, 128, 128, 0.15);
+}
+
+.teal-glow-sm {
+  text-shadow: 0 0 10px rgba(0, 128, 128, 0.4),
+               0 0 20px rgba(0, 128, 128, 0.2);
+}
+
+.teal-box-glow {
+  box-shadow: 0 0 20px rgba(0, 128, 128, 0.3),
+              0 0 40px rgba(0, 128, 128, 0.15);
+}
+
+.teal-border-glow {
+  box-shadow: 0 0 15px rgba(0, 128, 128, 0.4),
+              inset 0 0 15px rgba(0, 128, 128, 0.1);
+}
+
+/* Section Spacing */
+section {
+  position: relative;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 128, 128, 0.4);
+  color: #ffffff;
+}
