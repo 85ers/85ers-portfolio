@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const upcoming = [
     { label: "シネマティックCM", note: "AI生成 × After Effects" },
@@ -16,8 +16,37 @@ const scope = [
     { k: "音", v: "BGM・効果音まで自作" },
 ];
 
+const variants = [
+    {
+        id: "medical",
+        label: "医療ライン",
+        src: "/works/video0.mp4",
+        poster: "/works/video0-poster.jpg",
+        duration: "32秒",
+        note: "白い滅菌パウチ＋青ラベル。医療機器・医薬の包装ラインを想定した配色です。",
+    },
+    {
+        id: "food",
+        label: "食品ライン",
+        src: "/works/video0-food.mp4",
+        poster: "/works/video0-food-poster.jpg",
+        duration: "32秒",
+        note: "同じ機械・同じ構成のまま、製品とラベルの色・文言だけを食品向けに変えた版です。",
+    },
+    {
+        id: "making",
+        label: "メイキング",
+        src: "/works/video0-making.mp4",
+        poster: "/works/video0-making-poster.jpg",
+        duration: "10秒",
+        note: "ライン速度と製品の色を数値で変えるだけで、映像全体が更新されます。",
+    },
+];
+
 export default function Works() {
     const sectionRef = useRef(null);
+    const [active, setActive] = useState(0);
+    const current = variants[active];
     const isInView = useInView(sectionRef, { once: true, margin: "-50px" });
 
     return (
@@ -52,30 +81,59 @@ export default function Works() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.15 }}
             >
-                <div className="lg:col-span-3 border border-white/10 bg-black">
-                    <video
-                        className="w-full aspect-video block"
-                        controls
-                        playsInline
-                        preload="metadata"
-                        poster="/works/video0-poster.jpg"
+                <div className="lg:col-span-3">
+                    <div
+                        role="tablist"
+                        aria-label="バリエーション"
+                        className="flex gap-2 mb-3"
                     >
-                        <source src="/works/video0.mp4" type="video/mp4" />
-                    </video>
+                        {variants.map((v, i) => (
+                            <button
+                                key={v.id}
+                                role="tab"
+                                aria-selected={i === active}
+                                onClick={() => setActive(i)}
+                                className={
+                                    "px-4 py-2 text-xs tracking-[0.15em] border transition-colors duration-300 " +
+                                    (i === active
+                                        ? "border-[#008080] bg-[#008080]/15 text-white"
+                                        : "border-white/15 text-white/50 hover:border-[#008080]/50 hover:text-white/80")
+                                }
+                            >
+                                {v.label}
+                            </button>
+                        ))}
+                    </div>
+                    <div className="border border-white/10 bg-black">
+                        <video
+                            key={current.id}
+                            className="w-full aspect-video block"
+                            controls
+                            playsInline
+                            preload="metadata"
+                            poster={current.poster}
+                        >
+                            <source src={current.src} type="video/mp4" />
+                        </video>
+                    </div>
+                    <p className="mt-3 text-[12px] leading-relaxed text-white/40">
+                        {current.label}（{current.duration}）― {current.note}
+                    </p>
                 </div>
 
                 <div className="lg:col-span-2">
                     <p className="text-[10px] tracking-[0.3em] uppercase text-[#008080]/70">
-                        Video 00 / BtoB 機構解説CG
+                        Video 00 / BtoB 機構解説CG（3 variants）
                     </p>
                     <h3 className="mt-3 text-2xl md:text-3xl font-bold tracking-wide text-white leading-snug">
                         見えない機構を、可視化する。
                     </h3>
-                    <p className="mt-1 text-sm text-white/40">横ピロー包装機の熱シール機構（32秒）</p>
+                    <p className="mt-1 text-sm text-white/40">横ピロー包装機の熱シール機構</p>
 
                     <p className="mt-6 text-sm leading-relaxed text-white/60">
                         架空の包装機を一から作り、ジョーが閉じてシールとカットが行われる瞬間を
                         0.25倍のスローで見せた機構解説CGです。3ステップで動きを説明します。
+                        同じ3Dモデルから、医療ライン／食品ラインの2バリエーションを作り分けています。
                     </p>
 
                     <dl className="mt-8 space-y-4">
