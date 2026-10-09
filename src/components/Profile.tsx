@@ -125,7 +125,7 @@ export default function Profile() {
                                 Service
                             </span>
                             <span className="text-xs text-white/60">
-                                企画 / 撮影 / 編集 / CG制作
+                                企画 / 編集 / CG制作
                             </span>
                         </div>
                     </motion.div>
