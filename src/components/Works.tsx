@@ -27,7 +27,7 @@ type Work = {
 };
 
 const upcoming = [
-    { label: "シネマティックCM", note: "AI生成 × After Effects" },
+    { label: "シネマティックCM", note: "" },
     { label: "モーショングラフィックス", note: "UI / インフォグラフィックス" },
     { label: "MV / カルチャー", note: "キネティックタイポグラフィ" },
 ];
@@ -320,7 +320,7 @@ export default function Works() {
                             <h3 className="mt-2 text-lg font-bold tracking-wide text-white">
                                 {c.label}
                             </h3>
-                            <p className="mt-1 text-[11px] text-white/30">{c.note}</p>
+                            {c.note && <p className="mt-1 text-[11px] text-white/30">{c.note}</p>}
 
                             {/* Corner accent */}
                             <div className="absolute top-3 right-3 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
