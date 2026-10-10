@@ -89,7 +89,7 @@ export default function Profile() {
                         transition={{ delay: 0.9, duration: 0.8 }}
                     >
                         <p className="text-sm md:text-base leading-[2] text-white/70 tracking-wide">
-                            東京都目黒区を拠点に活動。
+                            東京都を拠点に活動。
                             <br />
                             After Effects、3DCG、VFXを駆使し、
                             <br />
@@ -110,7 +110,7 @@ export default function Profile() {
                             <span className="text-[10px] tracking-[0.3em] uppercase text-white/30 w-20">
                                 Location
                             </span>
-                            <span className="text-xs text-white/60">東京都目黒区</span>
+                            <span className="text-xs text-white/60">東京都</span>
                         </div>
                         <div className="flex items-center gap-4">
                             <span className="text-[10px] tracking-[0.3em] uppercase text-white/30 w-20">
