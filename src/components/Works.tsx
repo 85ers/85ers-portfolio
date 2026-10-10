@@ -14,6 +14,8 @@ type Variant = {
 
 type Work = {
     id: string;
+    group: string;
+    vertical?: boolean;
     kicker: string;
     title: string;
     subtitle: string;
@@ -33,6 +35,7 @@ const upcoming = [
 const works: Work[] = [
     {
         id: "video0",
+        group: "BtoB 機構解説・実写合成",
         kicker: "Video 00 / BtoB 機構解説CG（3 variants）",
         title: "見えない機構を、可視化する。",
         subtitle: "横ピロー包装機の熱シール機構",
@@ -75,6 +78,7 @@ const works: Work[] = [
     },
     {
         id: "video1",
+        group: "BtoB 機構解説・実写合成",
         kicker: "Video 01 / 実写 × CG 合成（2 cuts）",
         title: "実写の現場に、CGの機械を置く。",
         subtitle: "カメラトラッキングから影・反射・色合わせまで",
@@ -113,6 +117,34 @@ const works: Work[] = [
             },
         ],
     },
+    {
+        id: "video2",
+        group: "SNSショート／広告",
+        vertical: true,
+        kicker: "Video 02 / SNSショート（企業PR・縦型60秒）",
+        title: "0.25倍にしないと、見えない仕事があります。",
+        subtitle: "精密部品メーカー「ハルミ精工」（架空）の工程紹介",
+        description: [
+            "企業PR向けの縦型ショート動画です。冒頭の問いかけ → 工程を3ステップ（包む／閉じる／切る）→ 企業の姿勢、の順に、文字と音だけで伝わる構成にしています（ナレーションなし）。",
+            "映像は自作の3Dモデルを縦構図で撮り直し、文字の設計・編集・音をAfter Effectsで仕上げました。",
+        ],
+        scope: [
+            { k: "企画・構成", v: "フック／工程の3ステップ／締めの設計、安全圏を意識したテロップ配置" },
+            { k: "3DCG", v: "Blenderで縦型カットを新規撮影（外装が透ける内部、閉合の寄り、流れ出し）" },
+            { k: "編集・音", v: "After Effects／BGM・効果音まで自作（音なしでも通じる構成）" },
+        ],
+        footnote: "架空の企業を題材にした自主制作作品です（過去の実績は権利の都合で公開できないため、同種の案件を再現しました）。モデル・音源はすべて自作。",
+        variants: [
+            {
+                id: "short",
+                label: "60秒（縦型）",
+                src: "/works/video2-s2.mp4",
+                poster: "/works/video2-s2-poster.jpg",
+                duration: "60秒",
+                note: "ナレーションなし。BGM・効果音・テロップで構成。",
+            },
+        ],
+    },
 ];
 
 function WorkArticle({ work, delay }: { work: Work; delay: number }) {
@@ -129,7 +161,8 @@ function WorkArticle({ work, delay }: { work: Work; delay: number }) {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay }}
         >
-            <div className="lg:col-span-3">
+            <div className={work.vertical ? "lg:col-span-2" : "lg:col-span-3"}>
+                {work.variants.length > 1 && (
                 <div role="tablist" aria-label={`${work.title} のバリエーション`} className="flex flex-wrap gap-2 mb-3">
                     {work.variants.map((v, i) => (
                         <button
@@ -148,10 +181,11 @@ function WorkArticle({ work, delay }: { work: Work; delay: number }) {
                         </button>
                     ))}
                 </div>
-                <div className="border border-white/10 bg-black">
+                )}
+                <div className={"border border-white/10 bg-black" + (work.vertical ? " max-w-[360px] mx-auto" : "")}>
                     <video
                         key={`${work.id}-${current.id}`}
-                        className="w-full aspect-video block"
+                        className={"w-full block " + (work.vertical ? "aspect-[9/16]" : "aspect-video")}
                         controls
                         playsInline
                         preload="metadata"
@@ -165,7 +199,7 @@ function WorkArticle({ work, delay }: { work: Work; delay: number }) {
                 </p>
             </div>
 
-            <div className="lg:col-span-2">
+            <div className={work.vertical ? "lg:col-span-3" : "lg:col-span-2"}>
                 <p className="text-[10px] tracking-[0.3em] uppercase text-[#008080]/70">{work.kicker}</p>
                 <h3 className="mt-3 text-2xl md:text-3xl font-bold tracking-wide text-white leading-snug">
                     {work.title}
@@ -237,13 +271,21 @@ export default function Works() {
                 <h2 className="mt-2 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Works</h2>
                 <div className="mt-4 w-12 h-px bg-[#008080]/40" />
                 <p className="mt-6 text-white/50 text-sm md:text-base leading-relaxed max-w-xl">
-                    2作品を公開しました。ほかのジャンルも順次追加していきます。
+                    3作品を公開しました。ほかのジャンルも順次追加していきます。
                 </p>
             </motion.div>
 
             <div className="space-y-24 md:space-y-32">
                 {works.map((w, i) => (
-                    <WorkArticle key={w.id} work={w} delay={0.15 + i * 0.05} />
+                    <div key={w.id}>
+                        {(i === 0 || works[i - 1].group !== w.group) && (
+                            <div className="max-w-6xl mx-auto mb-10 flex items-center gap-4">
+                                <span className="text-[11px] tracking-[0.3em] uppercase text-white/50">{w.group}</span>
+                                <span className="flex-1 h-px bg-white/10" />
+                            </div>
+                        )}
+                        <WorkArticle work={w} delay={0.15 + i * 0.05} />
+                    </div>
                 ))}
             </div>
 
