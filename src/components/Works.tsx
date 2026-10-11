@@ -23,6 +23,7 @@ type Work = {
     scope: { k: string; v: string }[];
     memo?: { k: string; v: string }[];
     footnote: string;
+    gallery?: { src: string; caption: string }[];
     variants: Variant[];
 };
 
@@ -145,6 +146,48 @@ const works: Work[] = [
             },
         ],
     },
+    {
+        id: "video3",
+        group: "SNSショート／広告",
+        vertical: true,
+        kicker: "Video 03 / SNS広告ショート（美容・縦型45秒 ほか6本）",
+        title: "朝のスキンケアを、3ステップで。",
+        subtitle: "架空ブランド「ソラノヒ」の手順解説広告（美容・縦型）",
+        description: [
+            "美容系のSNS広告を想定した縦型ショートです。冒頭の問いかけ → ブランド → 3ステップ（洗う／整える／守る）→ CTA の順に、効果や効能は書かず、使い方の手順だけを見せています（ナレーションなし）。",
+            "広告運用を想定して、同じ素材から、45秒の本編／30秒版／文字なしの15秒ショーケース／冒頭3秒だけを差し替えた3案を書き出しました。",
+        ],
+        scope: [
+            { k: "企画・構成", v: "ターゲットは朝のスキンケアの順番に迷う人。フック → 3ステップ → CTA。薬機法・景表法に配慮し、効能・数値は書かない" },
+            { k: "3DCG", v: "ボトル・スポイト・ジャー、水面、積み重なるプレートをBlenderで制作。ガラスと液体の質感、被写界深度、モーションブラー（Cycles）" },
+            { k: "ブランド", v: "ロゴ・ラベル・配色を自作（書体：Zen Old Mincho）。ブランドは架空です" },
+            { k: "編集・音", v: "文字アニメーション・色調整・グレインをAfter Effectsで。BGM・効果音まで自作し、映像のカットにビート同期" },
+        ],
+        memo: [
+            { k: "担当", v: "企画・構成・3DCG・編集・音（すべて1人）" },
+            { k: "ツール", v: "Blender / After Effects / Python（音の生成）" },
+            { k: "仕様", v: "1080×1920・24fps・約−14 LUFS。文字は安全圏の内側に配置" },
+            { k: "視聴データ", v: "架空ブランドのため、視聴維持率などの実測値はありません" },
+        ],
+        footnote: "架空のブランドを題材にした自主制作作品です。モデル・ロゴ・音源はすべて自作。肌に合わない時は使用を中止してください。",
+        gallery: [
+            { src: "/works/s1/style-1.jpg", caption: "フック：商品が落ちて整列" },
+            { src: "/works/s1/style-2.jpg", caption: "ブランド：ラベルを自作" },
+            { src: "/works/s1/style-3.jpg", caption: "① 洗う：水面のしずく" },
+            { src: "/works/s1/style-4.jpg", caption: "② 整える：しずくがなじむ" },
+            { src: "/works/s1/style-5.jpg", caption: "③ 守る：重なる3層と朝日" },
+            { src: "/works/s1/style-6.jpg", caption: "Blenderの画面（書き出し）" },
+        ],
+        variants: [
+            { id: "main", label: "45秒（本編）", src: "/works/s1/s1-45.mp4", poster: "/works/s1/s1-45-poster.jpg", duration: "45秒", note: "冒頭の問いかけ版。ナレーションなし。BGM・効果音・テロップで構成。" },
+            { id: "cut30", label: "30秒版", src: "/works/s1/s1-30.mp4", poster: "/works/s1/s1-30-poster.jpg", duration: "30秒", note: "各ステップを短くしたカットダウン。尺違いの出し分けを想定。" },
+            { id: "show15", label: "15秒（文字なし）", src: "/works/s1/s1-15.mp4", poster: "/works/s1/s1-15-poster.jpg", duration: "15秒", note: "3D映像だけを見せるショーケース。ループ再生向け。" },
+            { id: "hookB", label: "冒頭B 結果先出し", src: "/works/s1/s1-hookB.mp4", poster: "/works/s1/s1-hookB-poster.jpg", duration: "10秒", note: "冒頭3秒を「完成形から入る」に差し替えた版（先頭10秒を抜粋。以降は本編と同じ）。" },
+            { id: "hookC", label: "冒頭C 数字", src: "/works/s1/s1-hookC.mp4", poster: "/works/s1/s1-hookC-poster.jpg", duration: "10秒", note: "冒頭3秒を「3ステップ」の数字から入る版（先頭10秒を抜粋）。" },
+            { id: "hookD", label: "冒頭D 水滴", src: "/works/s1/s1-hookD.mp4", poster: "/works/s1/s1-hookD-poster.jpg", duration: "10秒", note: "冒頭3秒を水滴のアップから入る版（先頭10秒を抜粋）。" },
+            { id: "making", label: "制作の裏付け", src: "/works/s1/s1-making.mp4", poster: "/works/s1/s1-making-poster.jpg", duration: "7秒", note: "Blenderの実際の画面（書き出し）。" },
+        ],
+    },
 ];
 
 function WorkArticle({ work, delay }: { work: Work; delay: number }) {
@@ -237,6 +280,21 @@ function WorkArticle({ work, delay }: { work: Work; delay: number }) {
                     </div>
                 )}
 
+                {work.gallery && (
+                    <div className="mt-8">
+                        <p className="text-[10px] tracking-[0.3em] uppercase text-[#008080]/70">スタイルフレーム</p>
+                        <div className="mt-3 grid grid-cols-3 gap-2">
+                            {work.gallery.map((g) => (
+                                <figure key={g.src}>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={g.src} alt={g.caption} loading="lazy" className="w-full aspect-[9/16] object-cover border border-white/10" />
+                                    <figcaption className="mt-1 text-[10px] leading-snug text-white/40">{g.caption}</figcaption>
+                                </figure>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
                 <p className="mt-8 text-[11px] leading-relaxed text-white/30">{work.footnote}</p>
 
                 <a
@@ -271,7 +329,7 @@ export default function Works() {
                 <h2 className="mt-2 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Works</h2>
                 <div className="mt-4 w-12 h-px bg-[#008080]/40" />
                 <p className="mt-6 text-white/50 text-sm md:text-base leading-relaxed max-w-xl">
-                    3作品を公開しました。ほかのジャンルも順次追加していきます。
+                    4作品を公開しました。ほかのジャンルも順次追加していきます。
                 </p>
             </motion.div>
 
