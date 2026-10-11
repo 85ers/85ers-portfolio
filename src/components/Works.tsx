@@ -10,6 +10,7 @@ type Variant = {
     poster: string;
     duration: string;
     note: string;
+    vertical?: boolean;
 };
 
 type Work = {
@@ -24,6 +25,7 @@ type Work = {
     memo?: { k: string; v: string }[];
     footnote: string;
     gallery?: { src: string; caption: string }[];
+    galleryWide?: boolean;
     variants: Variant[];
 };
 
@@ -188,6 +190,45 @@ const works: Work[] = [
             { id: "making", label: "制作の裏付け", src: "/works/s1/s1-making.mp4", poster: "/works/s1/s1-making-poster.jpg", duration: "7秒", note: "Blenderの実際の画面（書き出し）。" },
         ],
     },
+    {
+        id: "video4",
+        group: "広告CM／ブランド映像",
+        kicker: "Video 04 / ブランドCM（16:9・30秒 ほか3本）",
+        title: "朝のはじまりを、やさしく。",
+        subtitle: "架空ブランド「ソラノヒ」のブランドCM（Video 03 の続き）",
+        description: [
+            "Video 03 の手順解説広告の次に、世界観を伝える広告CMとして制作しました。暗い夜明けの部屋から、水滴・商品・重なる3層を経て、朝日とロゴへ。文字は最小限で、ナレーションなしです。",
+            "広告運用を想定して、30秒のシネマティック版のほかに、冒頭を明るくしてブランド名を冒頭に出した15秒の広告向け版（16:9／9:16）も書き出しました。",
+        ],
+        scope: [
+            { k: "企画・構成", v: "夜明けから朝への明暗の流れ、7つのショット、キャッチコピー（効能・数値は書かない）" },
+            { k: "3DCG", v: "Blender（Cycles）で、ガラス・水・ラベル付きの商品を撮影。水面は変形で波紋を作り、光の映り込みで見せる。ショットごとにカメラと被写界深度を設計" },
+            { k: "ブランド", v: "ロゴ・ラベル・配色（書体：Zen Old Mincho）。Video 03 と同じ架空ブランド" },
+            { k: "編集・音", v: "After Effects で文字・グロー・グレイン。BGM・効果音は自作し、ショットの切替に合わせて同期" },
+        ],
+        memo: [
+            { k: "担当", v: "企画・構成・3DCG・編集・音（すべて1人）" },
+            { k: "ツール", v: "Blender / After Effects / Python（音の生成）" },
+            { k: "仕様", v: "30秒は1920×1080・24fps・約−14 LUFS。文字は安全圏の内側。全コマの機械検査（素材欠落・切替のなめらかさ）済み" },
+            { k: "視聴データ", v: "架空ブランドのため、視聴維持率などの実測値はありません" },
+        ],
+        footnote: "架空のブランドを題材にした自主制作作品です。モデル・ロゴ・音源はすべて自作。",
+        galleryWide: true,
+        gallery: [
+            { src: "/works/c1/style-1.jpg", caption: "水滴：着水ごとに広がる波紋" },
+            { src: "/works/c1/style-2.jpg", caption: "商品：ラベルのロゴが読める" },
+            { src: "/works/c1/style-3.jpg", caption: "パッド：しずくがなじむ" },
+            { src: "/works/c1/style-4.jpg", caption: "重なる3層と朝日" },
+            { src: "/works/c1/style-5.jpg", caption: "ボトルの周りをまわる" },
+            { src: "/works/c1/style-6.jpg", caption: "日の出とロゴ・タグライン" },
+        ],
+        variants: [
+            { id: "cm30", label: "30秒（シネマティック）", src: "/works/c1/c1-30.mp4", poster: "/works/c1/c1-30-poster.jpg", duration: "30秒", note: "夜明けから朝へ。16:9。サイト・面談向けの本編。" },
+            { id: "ad15", label: "15秒 広告（16:9）", src: "/works/c1/c1-ad15.mp4", poster: "/works/c1/c1-ad15-poster.jpg", duration: "15秒", note: "冒頭を明るく、ブランド名を冒頭0.4秒に出した広告向け版。" },
+            { id: "ad15v", label: "15秒 広告（9:16）", src: "/works/c1/c1-ad15v.mp4", poster: "/works/c1/c1-ad15v-poster.jpg", duration: "15秒", note: "縦型。スマホの広告枠向けに、商品を大きく撮り直した版。", vertical: true },
+            { id: "cine15", label: "15秒（シネマティック）", src: "/works/c1/c1-cine15.mp4", poster: "/works/c1/c1-cine15-poster.jpg", duration: "15秒", note: "30秒版を短くした版（冒頭は夜明けの暗い画から）。" },
+        ],
+    },
 ];
 
 function WorkArticle({ work, delay }: { work: Work; delay: number }) {
@@ -225,10 +266,10 @@ function WorkArticle({ work, delay }: { work: Work; delay: number }) {
                     ))}
                 </div>
                 )}
-                <div className={"border border-white/10 bg-black" + (work.vertical ? " max-w-[360px] mx-auto" : "")}>
+                <div className={"border border-white/10 bg-black" + ((current.vertical ?? work.vertical) ? " max-w-[360px] mx-auto" : "")}>
                     <video
                         key={`${work.id}-${current.id}`}
-                        className={"w-full block " + (work.vertical ? "aspect-[9/16]" : "aspect-video")}
+                        className={"w-full block " + ((current.vertical ?? work.vertical) ? "aspect-[9/16]" : "aspect-video")}
                         controls
                         playsInline
                         preload="metadata"
@@ -283,11 +324,11 @@ function WorkArticle({ work, delay }: { work: Work; delay: number }) {
                 {work.gallery && (
                     <div className="mt-8">
                         <p className="text-[10px] tracking-[0.3em] uppercase text-[#008080]/70">スタイルフレーム</p>
-                        <div className="mt-3 grid grid-cols-3 gap-2">
+                        <div className={"mt-3 grid gap-2 " + (work.galleryWide ? "grid-cols-2" : "grid-cols-3")}>
                             {work.gallery.map((g) => (
                                 <figure key={g.src}>
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={g.src} alt={g.caption} loading="lazy" className="w-full aspect-[9/16] object-cover border border-white/10" />
+                                    <img src={g.src} alt={g.caption} loading="lazy" className={"w-full object-cover border border-white/10 " + (work.galleryWide ? "aspect-video" : "aspect-[9/16]")} />
                                     <figcaption className="mt-1 text-[10px] leading-snug text-white/40">{g.caption}</figcaption>
                                 </figure>
                             ))}
@@ -329,7 +370,7 @@ export default function Works() {
                 <h2 className="mt-2 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Works</h2>
                 <div className="mt-4 w-12 h-px bg-[#008080]/40" />
                 <p className="mt-6 text-white/50 text-sm md:text-base leading-relaxed max-w-xl">
-                    4作品を公開しました。ほかのジャンルも順次追加していきます。
+                    5作品を公開しました。ほかのジャンルも順次追加していきます。
                 </p>
             </motion.div>
 
