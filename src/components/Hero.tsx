@@ -65,17 +65,6 @@ export default function Hero() {
                             />
                         ))}
                     </div>
-                    {/* Video placeholder overlay text */}
-                    <div className="absolute bottom-8 left-8 z-10">
-                        <motion.p
-                            className="text-[10px] tracking-[0.3em] text-white/20 uppercase"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 1.5, duration: 1 }}
-                        >
-                            Showreel 2025
-                        </motion.p>
-                    </div>
                 </div>
 
                 {/* Right Panel */}
@@ -125,16 +114,6 @@ export default function Hero() {
                                 }}
                             />
                         ))}
-                    </div>
-                    <div className="absolute bottom-8 right-8 z-10">
-                        <motion.p
-                            className="text-[10px] tracking-[0.3em] text-white/20 uppercase"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 1.8, duration: 1 }}
-                        >
-                            Client Works
-                        </motion.p>
                     </div>
                 </div>
 

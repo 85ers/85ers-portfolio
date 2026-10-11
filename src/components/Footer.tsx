@@ -65,7 +65,7 @@ export default function Footer() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                    © 2025 85ers. All rights reserved.
+                    © {new Date().getFullYear()} 85ers. All rights reserved.
                 </motion.p>
             </div>
         </footer>
