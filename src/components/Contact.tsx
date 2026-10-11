@@ -109,6 +109,52 @@ export default function Contact() {
                                 />
                             </svg>
                         </motion.a>
+
+                        {/* Email */}
+                        <motion.p
+                            className="text-xs text-white/50 leading-relaxed"
+                            initial={{ opacity: 0 }}
+                            animate={isInView ? { opacity: 1 } : {}}
+                            transition={{ delay: 1.3, duration: 0.8 }}
+                        >
+                            メールでのご相談：
+                            <a
+                                href="mailto:yuto.edit.works@gmail.com"
+                                className="ml-1 text-white/80 underline decoration-[#008080]/60 underline-offset-4 hover:text-white"
+                            >
+                                yuto.edit.works@gmail.com
+                            </a>
+                        </motion.p>
+
+                        {/* For production companies / corporate clients */}
+                        <motion.div
+                            className="border border-white/10 p-5"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: 1.4, duration: 0.8 }}
+                        >
+                            <p className="text-[10px] tracking-[0.3em] uppercase text-[#008080]/70">
+                                制作会社・企業のご担当者様へ
+                            </p>
+                            <dl className="mt-4 space-y-3 text-xs leading-relaxed">
+                                <div className="flex gap-4">
+                                    <dt className="w-16 shrink-0 text-white/40">対応範囲</dt>
+                                    <dd className="text-white/70">
+                                        機構・製品の解説CG（Blender）／実写へのCG合成（トラッキング・影・反射・色合わせ）／After Effectsでの解説グラフィック／SNS向けショート
+                                    </dd>
+                                </div>
+                                <div className="flex gap-4">
+                                    <dt className="w-16 shrink-0 text-white/40">ご相談</dt>
+                                    <dd className="text-white/70">メールまたはフォームから。リモートで対応します。</dd>
+                                </div>
+                                <div className="flex gap-4">
+                                    <dt className="w-16 shrink-0 text-white/40">条件</dt>
+                                    <dd className="text-white/70">
+                                        修正回数・納期・お支払い条件は、事前に書面またはメールで確認します。
+                                    </dd>
+                                </div>
+                            </dl>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>
