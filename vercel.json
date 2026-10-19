@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/:path*", "destination": "https://85ers.net/:path*", "permanent": true }
+  ]
+}
