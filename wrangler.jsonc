@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers の静的アセット配信（Next.js の静的出力 out/ をそのまま公開）
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "85ers-portfolio",
+  "compatibility_date": "2026-10-19",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}
