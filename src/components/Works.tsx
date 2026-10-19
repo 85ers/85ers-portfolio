@@ -446,7 +446,7 @@ export default function Works() {
                 <h2 className="mt-2 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Works</h2>
                 <div className="mt-4 w-12 h-px bg-[#008080]/40" />
                 <p className="mt-6 text-white/50 text-sm md:text-base leading-relaxed max-w-xl">
-                    5作品を公開しました。ほかのジャンルも順次追加していきます。
+                    ほかのジャンルも順次追加していきます。
                 </p>
             </motion.div>
 
