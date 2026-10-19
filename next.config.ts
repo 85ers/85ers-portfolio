@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Cloudflare Pages 向けの静的出力（サーバー機能なし。out/ に出力）
+  output: "export",
+  images: { unoptimized: true },
 };
 
 export default nextConfig;

@@ -11,7 +11,7 @@ import {
 const socialLinks = [
     {
         icon: FaInstagram,
-        href: "https://www.instagram.com/yuto.edit.works/",
+        href: "https://www.instagram.com/85ers_yuto/",
         label: "Instagram",
     },
     {
@@ -21,12 +21,12 @@ const socialLinks = [
     },
     {
         icon: FaTiktok,
-        href: "https://www.tiktok.com/@yuto.edit.works",
+        href: "https://www.tiktok.com/@85ers_yuto",
         label: "TikTok",
     },
     {
         icon: FaXTwitter,
-        href: "https://x.com/YutoEditWorks",
+        href: "https://x.com/85ers_yuto",
         label: "X (Twitter)",
     },
 ];

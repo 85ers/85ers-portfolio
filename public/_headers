@@ -1,0 +1,3 @@
+# Cloudflare Pages：動画・画像のキャッシュ（ファイル名を変えずに差し替えたときのため、短めの1日）
+/works/*
+  Cache-Control: public, max-age=86400

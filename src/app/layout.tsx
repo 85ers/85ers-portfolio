@@ -9,6 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://85ers.net"),
+  alternates: { canonical: "/" },
   title: "85ers (EightyFivers) | 映像制作ユニット",
   description:
     "誠実さと自由を、映像でデザインする。東京都を拠点に、After Effects・3DCG・VFXを駆使した映像制作を行う85ers (EightyFivers)。",
@@ -17,6 +19,7 @@ export const metadata: Metadata = {
     title: "85ers (EightyFivers) | 映像制作ユニット",
     description: "誠実さと自由を、映像でデザインする。",
     type: "website",
+    url: "https://85ers.net",
   },
 };
 
