@@ -1,10 +1,14 @@
 {
-  // Cloudflare Workers の静的アセット配信（Next.js の静的出力 out/ をそのまま公開）
+  // Cloudflare Workers の静的アセット配信（Next.js の静的出力 out/ を公開）。
+  // 動画（mp4）だけ、worker/index.js を通して Range（部分取得）に応える（Safari・iPhone の再生に必要）。
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "85ers-portfolio",
+  "main": "worker/index.js",
   "compatibility_date": "2026-10-19",
   "assets": {
     "directory": "./out",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/works/*.mp4", "/works/*/*.mp4"]
   }
 }
