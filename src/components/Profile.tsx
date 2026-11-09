@@ -78,7 +78,7 @@ export default function Profile() {
                             animate={isInView ? { opacity: 1 } : {}}
                             transition={{ delay: 0.7, duration: 0.8 }}
                         >
-                            Video Production Unit — 85ers
+                            Motion Graphics / 3DCG — 85ers
                         </motion.p>
                     </div>
 
@@ -96,7 +96,9 @@ export default function Profile() {
                             お客様の課題に誠実に寄り添う映像制作を。
                         </p>
                         <p className="text-sm md:text-base leading-[2] text-white/70 tracking-wide">
-                            企画から納品まで一貫した品質をお約束します。
+                            企画のご相談も承ります。
+                            <br />
+                            制作は、モデリングからアニメーション、解説グラフィックまで、1人で担当します。
                         </p>
                     </motion.div>
 
