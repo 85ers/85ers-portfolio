@@ -29,12 +29,6 @@ type Work = {
     variants: Variant[];
 };
 
-const upcoming = [
-    { label: "シネマティックCM", note: "" },
-    { label: "モーショングラフィックス", note: "UI / インフォグラフィックス" },
-    { label: "MV / カルチャー", note: "キネティックタイポグラフィ" },
-];
-
 const works: Work[] = [
     {
         id: "video0",
@@ -463,49 +457,6 @@ export default function Works() {
                     </div>
                 ))}
             </div>
-
-            {/* Upcoming categories */}
-            <motion.div
-                className="max-w-6xl mx-auto mt-32"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.3 }}
-            >
-                <p className="text-[10px] tracking-[0.4em] uppercase text-white/30">Next</p>
-
-                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {upcoming.map((c, index) => (
-                        <motion.div
-                            key={c.label}
-                            className="group relative border border-white/10 hover:border-[#008080]/50 transition-colors duration-500 p-6 aspect-[4/3] flex flex-col justify-end overflow-hidden"
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{
-                                duration: 0.7,
-                                delay: 0.4 + index * 0.1,
-                                ease: "easeOut",
-                            }}
-                        >
-                            {/* Teal glow on hover */}
-                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-[#008080]/10 via-transparent to-transparent" />
-
-                            <p className="text-[10px] tracking-[0.3em] uppercase text-[#008080]/70">
-                                Preparing
-                            </p>
-                            <h3 className="mt-2 text-lg font-bold tracking-wide text-white">
-                                {c.label}
-                            </h3>
-                            {c.note && <p className="mt-1 text-[11px] text-white/30">{c.note}</p>}
-
-                            {/* Corner accent */}
-                            <div className="absolute top-3 right-3 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                <div className="absolute top-0 right-0 w-full h-px bg-[#008080]" />
-                                <div className="absolute top-0 right-0 w-px h-full bg-[#008080]" />
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </motion.div>
         </section>
     );
 }
