@@ -1,3 +1,10 @@
+# セキュリティヘッダー：全ページ共通（HSTS は Cloudflare の画面で設定）
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
 # Cloudflare Pages：動画・画像のキャッシュ（ファイル名を変えずに差し替えたときのため、短めの1日）
 /works/*
   Cache-Control: public, max-age=86400
