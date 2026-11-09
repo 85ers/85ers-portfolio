@@ -145,7 +145,7 @@ export default function Contact() {
                                 </div>
                                 <div className="flex gap-4">
                                     <dt className="w-16 shrink-0 text-white/40">ご相談</dt>
-                                    <dd className="text-white/70">メールまたはフォームから。リモートで対応します。</dd>
+                                    <dd className="text-white/70">メールまたはフォームから。リモートでの対応を基本とします。</dd>
                                 </div>
                                 <div className="flex gap-4">
                                     <dt className="w-16 shrink-0 text-white/40">条件</dt>
