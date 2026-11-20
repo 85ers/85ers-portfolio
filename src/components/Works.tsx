@@ -26,6 +26,8 @@ type Work = {
     footnote: string;
     gallery?: { src: string; caption: string }[];
     galleryWide?: boolean;
+    figures?: { src: string; caption: string }[];
+    credits?: { label: string; href: string }[];
     variants: Variant[];
 };
 
@@ -299,6 +301,43 @@ const works: Work[] = [
             { id: "cm15v", label: "15秒（9:16）", src: "/works/c4/c4-15v.mp4", poster: "/works/c4/c4-15v-poster.jpg", duration: "15秒", note: "縦型。カードを縦に並べ直し、別のカメラでデータを追う。タイトルは帯の上に。", vertical: true },
         ],
     },
+    {
+        id: "video7",
+        group: "漫画PV／MV（静止画パーツ分解）",
+        kicker: "Video 07 / 漫画PVデモ（16:9・9:16 各18秒）",
+        title: "静止画に、呼吸と斬れ味を。",
+        subtitle: "架空のオリジナル漫画PV『零度ノ残光』（自主制作）",
+        description: [
+            "イラストをパーツに分けて、立体的に動かした漫画PVのデモです。本編16秒のあとに、3Dレイヤーの分解（ブレイクダウン）を2秒入れています。分解は0:16から始まります。",
+            "16:9（横）と9:16（縦）の2つの版があります。縦型は、画面に合わせて文字とカードの配置を組み直しています。",
+        ],
+        scope: [
+            { k: "パーツ分解", v: "Photoshopで、髪の束・マフラー・コート裾・刀などの部位に切り分け、動かす部位の下の絵を補う。切り分けと補完は手作業" },
+            { k: "ベクター", v: "Illustratorで、文字・六角の陣・閃光・ロゴを作成。After Effectsでは連続ラスタライズにして、寄っても線がぼけにくい" },
+            { k: "動き", v: "After Effectsの標準のエフェクトとエクスプレッションで構成。外部プラグインは使っていません" },
+        ],
+        memo: [
+            { k: "担当", v: "パーツ分解・モーション・編集（すべて1人）" },
+            { k: "ツール", v: "Photoshop 2026 / Illustrator 2027 / After Effects 2026" },
+            { k: "仕様", v: "計18秒（本編16秒＋分解2秒）・24fps・16:9は1920×1080、9:16は1080×1920" },
+            { k: "調整", v: "00_MASTER_CONTROL：発光の強さ・カメラの揺れ・差し色の色合いを、3本のスライダーでまとめて調整できます" },
+            { k: "修正", v: ".aepでの納品・修正もご相談ください（条件は個別に）" },
+        ],
+        footnote: "架空の漫画PVを題材にした自主制作作品です。原画：Adobe Firefly（架空オリジナル作品）。",
+        credits: [
+            { label: "BGM：PeriTune「Kengeki」（CC BY 4.0・18秒に合わせて切り詰め・ミックスしています）", href: "https://peritune.com/blog/2021/08/17/kengeki/" },
+            { label: "ライセンス：CC BY 4.0", href: "https://creativecommons.org/licenses/by/4.0/deed.ja" },
+            { label: "効果音：効果音ラボ", href: "https://soundeffect-lab.info/" },
+        ],
+        figures: [
+            { src: "/works/zero/zero-pipeline.jpg", caption: "制作の流れ：元の絵と切り分けたパーツ（Photoshop）／ベクター原盤（Illustrator）／3D親子リグとスライダー（After Effects）" },
+            { src: "/works/zero/zero-breakdown.jpg", caption: "3Dレイヤー分解（0:16〜）：6枚のレイヤーをZ軸に展開" },
+        ],
+        variants: [
+            { id: "wide", label: "16:9（横）", src: "/works/zero/zero-16x9.mp4", poster: "/works/zero/zero-16x9-poster.jpg", duration: "18秒", note: "本編16秒＋3Dレイヤー分解2秒。" },
+            { id: "tall", label: "9:16（縦）", src: "/works/zero/zero-9x16.mp4", poster: "/works/zero/zero-9x16-poster.jpg", duration: "18秒", vertical: true, note: "SNS向けの縦型。同じ内容を、縦の画面に合わせて組み直した版。" },
+        ],
+    },
 ];
 
 function WorkArticle({ work, delay }: { work: Work; delay: number }) {
@@ -351,6 +390,17 @@ function WorkArticle({ work, delay }: { work: Work; delay: number }) {
                 <p className="mt-3 text-[12px] leading-relaxed text-white/40">
                     {current.label}（{current.duration}）― {current.note}
                 </p>
+                {work.figures && (
+                    <div className="mt-8 space-y-6">
+                        {work.figures.map((f) => (
+                            <figure key={f.src}>
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={f.src} alt={f.caption} loading="lazy" className="w-full border border-white/10" />
+                                <figcaption className="mt-2 text-[11px] leading-snug text-white/40">{f.caption}</figcaption>
+                            </figure>
+                        ))}
+                    </div>
+                )}
             </div>
 
             <div className={work.vertical ? "lg:col-span-3" : "lg:col-span-2"}>
@@ -407,6 +457,17 @@ function WorkArticle({ work, delay }: { work: Work; delay: number }) {
                 )}
 
                 <p className="mt-8 text-[11px] leading-relaxed text-white/30">{work.footnote}</p>
+                {work.credits && (
+                    <ul className="mt-2 space-y-1 text-[11px] leading-relaxed text-white/30">
+                        {work.credits.map((c) => (
+                            <li key={c.href}>
+                                <a href={c.href} target="_blank" rel="noopener noreferrer" className="underline decoration-white/20 hover:text-white/60">
+                                    {c.label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                )}
 
                 <a
                     href="#contact"
