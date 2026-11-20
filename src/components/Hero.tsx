@@ -181,13 +181,40 @@ export default function Hero() {
                         EightyFivers
                     </motion.p>
                     <motion.p
-                        className="mt-6 text-[11px] md:text-sm tracking-[0.15em] text-white/30 max-w-xs mx-auto"
+                        className="mt-6 text-sm md:text-lg tracking-[0.12em] text-white/85 max-w-md mx-auto leading-relaxed"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 1.2, duration: 1 }}
+                        transition={{ delay: 0.6, duration: 0.8 }}
                     >
-                        誠実さと自由を、映像でデザインする
+                        見えない仕組みを可視化する映像制作
                     </motion.p>
+                    <motion.p
+                        className="mt-2 text-xs md:text-[13px] tracking-[0.1em] text-white/60 max-w-md mx-auto leading-relaxed"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.8, duration: 0.8 }}
+                    >
+                        機構・製品の解説モーション／静止画から動かす漫画PV
+                    </motion.p>
+                    <motion.div
+                        className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.0, duration: 0.8 }}
+                    >
+                        <Link
+                            href="#works"
+                            className="min-w-[10rem] text-center border border-[#008080] bg-[#008080]/15 hover:bg-[#008080]/30 transition-colors duration-300 px-7 py-3 text-xs tracking-[0.25em] text-white"
+                        >
+                            作品を見る
+                        </Link>
+                        <Link
+                            href="#contact"
+                            className="min-w-[10rem] text-center border border-white/25 hover:border-[#008080]/60 hover:text-white transition-colors duration-300 px-7 py-3 text-xs tracking-[0.25em] text-white/80"
+                        >
+                            相談する
+                        </Link>
+                    </motion.div>
                 </motion.div>
 
                 {/* Scroll Indicator */}
