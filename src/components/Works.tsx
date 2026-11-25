@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Variant = {
     id: string;
@@ -15,6 +15,7 @@ type Variant = {
 
 type Work = {
     id: string;
+    slug: string;
     group: string;
     vertical?: boolean;
     kicker: string;
@@ -34,9 +35,10 @@ type Work = {
 const works: Work[] = [
     {
         id: "video0",
+        slug: "packaging-machine",
         group: "BtoB 機構解説・実写合成",
         kicker: "Video 00 / BtoB 機構解説CG（3 variants）",
-        title: "見えない機構を、可視化する。",
+        title: "見えない機構を可視化する。",
         subtitle: "横ピロー包装機の熱シール機構",
         description: [
             "架空の包装機を一から作り、ジョーが閉じてシールとカットが行われる瞬間を0.25倍のスローで見せた機構解説CGです。3ステップで動きを説明します。",
@@ -76,9 +78,10 @@ const works: Work[] = [
     },
     {
         id: "video1",
+        slug: "vfx-composite",
         group: "BtoB 機構解説・実写合成",
         kicker: "Video 01 / 実写 × CG 合成（2 cuts）",
-        title: "実写の現場に、CGの機械を置く。",
+        title: "実写の現場にCGの機械を置く。",
         subtitle: "カメラトラッキングから影・反射・色合わせまで",
         description: [
             "ストック映像のクリーンルームに、自作の包装機を合成した作品です。「ビフォー／アフター」で、カメラトラッキング → 影 → 反射 → CG → 色合わせの順に、何をしているかを見せます。",
@@ -117,10 +120,11 @@ const works: Work[] = [
     },
     {
         id: "video2",
+        slug: "sns-short",
         group: "SNSショート／広告",
         vertical: true,
         kicker: "Video 02 / SNSショート（企業PR・縦型60秒）",
-        title: "0.25倍にしないと、見えない仕事があります。",
+        title: "0.25倍にしないと見えない仕事があります。",
         subtitle: "精密部品メーカー「ハルミ精工」（架空）の工程紹介",
         description: [
             "企業PR向けの縦型ショート動画です。冒頭の問いかけ → 工程を3ステップ（包む／閉じる／切る）→ 企業の姿勢、の順に、文字と音だけで伝わる構成にしています（ナレーションなし）。",
@@ -145,10 +149,11 @@ const works: Work[] = [
     },
     {
         id: "video3",
+        slug: "skincare-ad",
         group: "SNSショート／広告",
         vertical: true,
         kicker: "Video 03 / SNS広告ショート（美容・縦型45秒 ほか6本）",
-        title: "朝のスキンケアを、3ステップで。",
+        title: "朝のスキンケアを3ステップで。",
         subtitle: "架空ブランド「ソラノヒ」の手順解説広告（美容・縦型）",
         description: [
             "美容系のSNS広告を想定した縦型ショートです。冒頭の問いかけ → ブランド → 3ステップ（洗う／整える／守る）→ CTA の順に、効果や効能は書かず、使い方の手順だけを見せています（ナレーションなし）。",
@@ -187,9 +192,10 @@ const works: Work[] = [
     },
     {
         id: "video4",
+        slug: "brand-cm",
         group: "広告CM／ブランド映像",
         kicker: "Video 04 / ブランドCM（16:9・30秒 ほか3本）",
-        title: "朝のはじまりを、やさしく。",
+        title: "朝のはじまりをやさしく。",
         subtitle: "架空ブランド「ソラノヒ」のブランドCM（Video 03 の続き）",
         description: [
             "Video 03 の手順解説広告の次に、世界観を伝える広告CMとして制作しました。暗い夜明けの部屋から、水滴・商品・重なる3層を経て、朝日とロゴへ。文字は最小限で、ナレーションなしです。",
@@ -226,9 +232,10 @@ const works: Work[] = [
     },
     {
         id: "video5",
+        slug: "recruit-cm",
         group: "採用CM／企業PR",
         kicker: "Video 05 / 採用CM（16:9・30秒 ほか2本）",
-        title: "ある一日を、のぞいてみる。",
+        title: "ある一日をのぞいてみる。",
         subtitle: "架空企業「ハルミ精工」の採用CM（Video 02 の続き）",
         description: [
             "Video 02 の企業PRの次に、採用向けのCMとして制作しました。朝の出社から夕方の終業までの「1日の流れ」を、人物を出さず、物の動きだけで見せます。求職者が知りたい「仕事の中身」と「1日の流れ」を中心に構成しました。",
@@ -264,6 +271,7 @@ const works: Work[] = [
     },
     {
         id: "video6",
+        slug: "saas-motion",
         group: "SaaS／機能解説モーション",
         kicker: "Video 06 / 機能解説モーション（16:9・30秒 ほか2本）",
         title: "つなぐと流れ出す。",
@@ -301,9 +309,10 @@ const works: Work[] = [
     },
     {
         id: "video7",
+        slug: "zero-afterglow",
         group: "漫画PV／MV（静止画パーツ分解）",
         kicker: "Video 07 / 漫画PVデモ（16:9・9:16 各18秒）",
-        title: "静止画に、呼吸と斬れ味を。",
+        title: "静止画に呼吸と斬れ味を。",
         subtitle: "架空のオリジナル漫画PV『零度ノ残光』（自主制作）",
         description: [
             "イラストをパーツに分けて、立体的に動かした漫画PVのデモです。本編16秒のあとに、3Dレイヤーの分解（ブレイクダウン）を2秒入れています。分解は0:16から始まります。",
@@ -320,6 +329,8 @@ const works: Work[] = [
             { k: "仕様", v: "計18秒（本編16秒＋分解2秒）・24fps・16:9は1920×1080、9:16は1080×1920" },
             { k: "調整", v: "00_MASTER_CONTROL：発光の強さ・カメラの揺れ・差し色の色合いを、3本のスライダーでまとめて調整できます" },
             { k: "修正", v: ".aepでの納品・修正もご相談ください（条件は個別に）" },
+            { k: "素材", v: "統合した画像でもレイヤー分けPSDでもご相談ください" },
+            { k: "納期", v: "カット数とパーツ数を伺ってからご案内します" },
         ],
         footnote: "架空の漫画PVを題材にした自主制作作品です。原画：Adobe Firefly（架空オリジナル作品）。",
         credits: [
@@ -482,6 +493,12 @@ export default function Works() {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-50px" });
 
+    // #付きのURLで開いたとき、読み込み後に該当の位置へ移動する
+    useEffect(() => {
+        const id = window.location.hash.slice(1);
+        if (id) document.getElementById(id)?.scrollIntoView({ behavior: "instant" });
+    }, []);
+
     return (
         <section
             id="works"
@@ -495,17 +512,37 @@ export default function Works() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8 }}
             >
-                <p className="text-[10px] tracking-[0.4em] uppercase text-[#008080]/60">Latest</p>
-                <h2 className="mt-2 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Works</h2>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Works</h2>
                 <div className="mt-4 w-12 h-px bg-[#008080]/40" />
                 <p className="mt-6 text-white/50 text-sm md:text-base leading-relaxed max-w-xl">
-                    ほかのジャンルも順次追加していきます。
+                    自主制作の作例を種類ごとに並べています。
                 </p>
             </motion.div>
 
+            <nav aria-label="作品の目次" className="max-w-6xl mx-auto mb-24">
+                <ul className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8">
+                    {works.map((w) => (
+                        <li key={w.id}>
+                            <a href={`#${w.slug}`} className="group block">
+                                <div className="aspect-video bg-black border border-white/10 group-hover:border-[#008080] transition-colors duration-300">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={w.variants[0].poster} alt="" loading="lazy" className="w-full h-full object-contain" />
+                                </div>
+                                <p className="mt-2 text-[11px] leading-snug text-[#00b3b3]">{w.group}</p>
+                                <p className="mt-1 text-sm leading-snug text-white/80 group-hover:text-white">{w.title}</p>
+                                <p className="mt-1 text-[11px] text-white/50">
+                                    {w.variants[0].duration}
+                                    {w.variants.length > 1 && `（全${w.variants.length}本）`}
+                                </p>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+
             <div className="space-y-24 md:space-y-32">
                 {works.map((w, i) => (
-                    <div key={w.id}>
+                    <div key={w.id} id={w.slug} className="scroll-mt-8">
                         {(i === 0 || works[i - 1].group !== w.group) && (
                             <div className="max-w-6xl mx-auto mb-10 flex items-center gap-4">
                                 <span className="text-[11px] tracking-[0.3em] uppercase text-white/50">{w.group}</span>

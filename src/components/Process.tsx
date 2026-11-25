@@ -36,8 +36,7 @@ export default function Process() {
                 </h2>
                 <div className="mt-4 w-12 h-px bg-[#008080]/40" />
                 <p className="mt-6 text-sm text-white/40 max-w-lg leading-relaxed">
-                    ヒアリングから納品まで、一貫した品質管理のもとで制作を進行します。
-                    各フェーズでお客様との密なコミュニケーションを大切にしています。
+                    工程の区切りで途中の状態を共有しながら進めます。
                 </p>
             </motion.div>
 
@@ -66,17 +65,17 @@ export default function Process() {
 
             {/* Bottom detail steps */}
             <motion.div
-                className="max-w-5xl mx-auto mt-16 grid grid-cols-1 sm:grid-cols-5 gap-6"
+                className="max-w-5xl mx-auto mt-16 grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-6"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.6 }}
             >
                 {[
-                    { step: "01", title: "HEARING", desc: "ヒアリング" },
-                    { step: "02", title: "PLANNING", desc: "企画・構成" },
-                    { step: "03", title: "PRODUCTION", desc: "制作" },
-                    { step: "04", title: "REVIEW", desc: "確認・修正" },
-                    { step: "05", title: "DELIVERY", desc: "納品" },
+                    { step: "01", title: "HEARING", desc: "ヒアリング", detail: "目的・尺・素材の有無・ご希望の日程を伺います" },
+                    { step: "02", title: "PLANNING", desc: "企画・構成", detail: "構成案と粗い動き（プリビズ）をご確認いただき合意してから本制作に入ります" },
+                    { step: "03", title: "PRODUCTION", desc: "制作", detail: "3DCG・モーション・編集を進めながら区切りごとに途中の状態を共有します" },
+                    { step: "04", title: "REVIEW", desc: "確認・修正", detail: "修正は工程ごとに区切って確認します" },
+                    { step: "05", title: "DELIVERY", desc: "納品", detail: "ご指定の解像度と比率で書き出して納品します" },
                 ].map((item, i) => (
                     <motion.div
                         key={item.step}
@@ -91,7 +90,8 @@ export default function Process() {
                         <p className="mt-1 text-xs font-semibold tracking-wider text-white/70 group-hover:text-[#008080] transition-colors duration-300">
                             {item.title}
                         </p>
-                        <p className="mt-1 text-[10px] text-white/30">{item.desc}</p>
+                        <p className="mt-1 text-[11px] text-white/50">{item.desc}</p>
+                        <p className="mt-3 text-[12px] leading-relaxed text-white/60">{item.detail}</p>
                     </motion.div>
                 ))}
             </motion.div>

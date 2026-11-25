@@ -62,7 +62,7 @@ export default function Contact() {
                                 animate={isInView ? { opacity: 1 } : {}}
                                 transition={{ delay: 0.7, duration: 0.8 }}
                             >
-                                プロジェクトの規模やジャンルを問わず、まずはお気軽にご相談ください。
+                                映像制作のご相談はメールかフォームから受け付けています。
                                 <br />
                                 企画段階からのご相談も承っております。
                             </motion.p>
@@ -77,7 +77,7 @@ export default function Contact() {
                         >
                             <div className="w-2 h-2 rounded-full bg-[#008080] animate-pulse" />
                             <p className="text-xs tracking-wide text-white/50">
-                                通常2営業日以内に返信いたします
+                                ご返信の目安は2営業日ほどです
                             </p>
                         </motion.div>
 
@@ -140,7 +140,14 @@ export default function Contact() {
                                 <div className="flex gap-4">
                                     <dt className="w-16 shrink-0 text-white/40">対応範囲</dt>
                                     <dd className="text-white/70">
-                                        機構・製品の解説CG（Blender）／実写へのCG合成（トラッキング・影・反射・色合わせ）／After Effectsでの解説グラフィック／SNS向けショート
+                                        <ul className="space-y-1">
+                                            <li>機構・製品の解説CG（Blender）</li>
+                                            <li>実写へのCG合成（トラッキング・影・反射・色合わせ）</li>
+                                            <li>After Effectsでの解説グラフィック</li>
+                                            <li>SNS向けショート</li>
+                                            <li>支給イラスト・漫画原稿のパーツ分解とモーション制作（漫画PVなど）</li>
+                                        </ul>
+                                        <p className="mt-2 text-white/50">撮影は行いません。</p>
                                     </dd>
                                 </div>
                                 <div className="flex gap-4">

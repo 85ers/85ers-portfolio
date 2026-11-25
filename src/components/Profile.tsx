@@ -91,13 +91,13 @@ export default function Profile() {
                         <p className="text-sm md:text-base leading-[2] text-white/70 tracking-wide">
                             東京都を拠点に活動。
                             <br />
-                            After Effects、3DCG、VFXを駆使し、
+                            After EffectsとBlenderで機構や仕組みの解説映像を作っています。
                             <br />
-                            お客様の課題に誠実に寄り添う映像制作を。
+                            静止画をパーツに分けて動かす漫画PVも制作しています。
+                            <br />
+                            撮影は行いません。
                         </p>
                         <p className="text-sm md:text-base leading-[2] text-white/70 tracking-wide">
-                            企画のご相談も承ります。
-                            <br />
                             制作は、モデリングからアニメーション、解説グラフィックまで、1人で担当します。
                         </p>
                     </motion.div>
