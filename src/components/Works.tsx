@@ -55,8 +55,9 @@ const works: Work[] = [
             {
                 id: "main",
                 label: "本編",
-                src: "/works/video0.mp4",
-                poster: "/works/video0-poster.jpg",
+                // 同じ名前で差し替えるときは v の数字を上げる（/works/* は最大1日キャッシュされる）
+                src: "/works/video0.mp4?v=2",
+                poster: "/works/video0-poster.jpg?v=2",
                 duration: "38秒",
                 note: "4工程の解説とライン全体を見せて、仕様パネルで締めます。仕様の数値は説明用の設定値です。",
             },
