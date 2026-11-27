@@ -12,7 +12,7 @@ export default function Profile() {
         <section
             id="profile"
             ref={sectionRef}
-            className="relative min-h-screen flex items-center py-32 md:py-44 px-6 md:px-16 lg:px-24"
+            className="relative min-h-screen flex items-center py-32 md:py-44 px-6 md:px-16 lg:px-24 overflow-x-clip"
         >
             {/* Section Label */}
             <motion.div

@@ -91,7 +91,7 @@ export default function Process() {
                             {item.title}
                         </p>
                         <p className="mt-1 text-[11px] text-white/50">{item.desc}</p>
-                        <p className="mt-3 text-[12px] leading-relaxed text-white/60">{item.detail}</p>
+                        <p className="mt-3 text-[12px] leading-relaxed text-balance text-white/60">{item.detail}</p>
                     </motion.div>
                 ))}
             </motion.div>

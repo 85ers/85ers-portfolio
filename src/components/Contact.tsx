@@ -22,7 +22,7 @@ export default function Contact() {
             <section
                 id="contact"
                 ref={sectionRef}
-                className="relative py-32 md:py-44 px-6 md:px-16 lg:px-24 min-h-[70vh] flex items-center"
+                className="relative py-32 md:py-44 px-6 md:px-16 lg:px-24 min-h-[70vh] flex items-center overflow-x-clip"
             >
                 <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
                     {/* Left: Giant Typography */}
