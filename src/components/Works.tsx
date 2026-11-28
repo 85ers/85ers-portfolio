@@ -358,9 +358,28 @@ function WorkArticle({ work, delay }: { work: Work; delay: number }) {
                     {work.variants.map((v, i) => (
                         <button
                             key={v.id}
+                            id={`${work.id}-tab-${v.id}`}
+                            type="button"
                             role="tab"
                             aria-selected={i === active}
+                            aria-controls={`${work.id}-panel`}
+                            tabIndex={i === active ? 0 : -1}
                             onClick={() => setActive(i)}
+                            onKeyDown={(e) => {
+                                const last = work.variants.length - 1;
+                                const next =
+                                    e.key === "ArrowRight" ? (i === last ? 0 : i + 1)
+                                    : e.key === "ArrowLeft" ? (i === 0 ? last : i - 1)
+                                    : e.key === "Home" ? 0
+                                    : e.key === "End" ? last
+                                    : null;
+                                if (next === null) return;
+                                e.preventDefault();
+                                setActive(next);
+                                e.currentTarget.parentElement
+                                    ?.querySelectorAll<HTMLButtonElement>('[role="tab"]')
+                                    [next]?.focus();
+                            }}
                             className={
                                 "px-4 py-2 text-xs tracking-[0.15em] border transition-colors duration-300 " +
                                 (i === active
@@ -373,7 +392,12 @@ function WorkArticle({ work, delay }: { work: Work; delay: number }) {
                     ))}
                 </div>
                 )}
-                <div className={"border border-white/10 bg-black" + ((current.vertical ?? work.vertical) ? " max-w-[360px] mx-auto" : "")}>
+                <div
+                    {...(work.variants.length > 1
+                        ? { id: `${work.id}-panel`, role: "tabpanel", "aria-labelledby": `${work.id}-tab-${current.id}` }
+                        : {})}
+                    className={"border border-white/10 bg-black" + ((current.vertical ?? work.vertical) ? " max-w-[360px] mx-auto" : "")}
+                >
                     <video
                         key={`${work.id}-${current.id}`}
                         className={"w-full block " + ((current.vertical ?? work.vertical) ? "aspect-[9/16]" : "aspect-video")}

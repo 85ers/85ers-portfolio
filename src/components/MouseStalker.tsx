@@ -18,6 +18,7 @@ export default function MouseStalker() {
         // Only show on devices with fine pointer (desktop)
         const mediaQuery = window.matchMedia("(pointer: fine)");
         if (!mediaQuery.matches) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
         const handleMouseMove = (e: MouseEvent) => {
             cursorX.set(e.clientX);

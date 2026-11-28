@@ -71,6 +71,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/* 動きを減らす設定の閲覧者向け */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-pulse {
+    animation: none;
+  }
+}
+
 /* Selection */
 ::selection {
   background: rgba(0, 128, 128, 0.4);

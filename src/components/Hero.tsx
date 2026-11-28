@@ -130,7 +130,7 @@ export default function Hero() {
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
                 {/* Top Navigation */}
                 <motion.nav
-                    className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 md:px-12 py-6"
+                    className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 md:px-12 py-2.5"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
@@ -140,7 +140,7 @@ export default function Hero() {
                             <Link
                                 key={item.label}
                                 href={item.href}
-                                className="text-[11px] md:text-xs tracking-[0.2em] uppercase text-white/50 hover:text-[#008080] transition-colors duration-500"
+                                className="inline-flex items-center min-h-11 text-[11px] md:text-xs tracking-[0.2em] uppercase text-white/50 hover:text-[#008080] transition-colors duration-500"
                             >
                                 {item.label}
                             </Link>
@@ -151,7 +151,7 @@ export default function Hero() {
                             <Link
                                 key={item.label}
                                 href={item.href}
-                                className="text-[11px] md:text-xs tracking-[0.2em] uppercase text-white/50 hover:text-[#008080] transition-colors duration-500"
+                                className="inline-flex items-center min-h-11 text-[11px] md:text-xs tracking-[0.2em] uppercase text-white/50 hover:text-[#008080] transition-colors duration-500"
                             >
                                 {item.label}
                             </Link>

@@ -85,7 +85,7 @@ export default function Contact() {
                         <motion.a
                             href="https://forms.gle/mxucbJBfzUWBCBbb8"
                             onClick={handleContactClick}
-                            className="group inline-flex items-center gap-3 px-10 py-5 bg-[#008080] hover:bg-[#00b3b3] text-white font-semibold tracking-wide transition-all duration-500 teal-box-glow hover:shadow-[0_0_40px_rgba(0,128,128,0.5)] cursor-pointer"
+                            className="group inline-flex items-center gap-3 px-6 md:px-10 py-5 bg-[#008080] hover:bg-[#00b3b3] text-white font-semibold tracking-wide transition-all duration-500 teal-box-glow hover:shadow-[0_0_40px_rgba(0,128,128,0.5)] cursor-pointer"
                             initial={{ opacity: 0, y: 20 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: 1.1, duration: 0.8 }}
@@ -93,7 +93,8 @@ export default function Contact() {
                             whileTap={{ scale: 0.98 }}
                         >
                             <span className="text-sm md:text-base">
-                                制作のご相談を送る（Googleフォーム）
+                                <span className="inline-block">制作のご相談を送る</span>
+                                <span className="inline-block">（Googleフォーム）</span>
                             </span>
                             <svg
                                 className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"

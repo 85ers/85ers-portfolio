@@ -42,6 +42,15 @@ export const metadata: Metadata = {
   },
 };
 
+// 検索結果のサイト名用（Google の WebSite 構造化データ）
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "85ers",
+  alternateName: "EightyFivers",
+  url: "https://85ers.net/",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -50,6 +59,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${inter.variable} antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         {children}
       </body>
     </html>
